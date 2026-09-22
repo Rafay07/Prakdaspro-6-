@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class try1 {
+public class Pemilihan2Percobaan1NoAbsen2 {
     public static void main(String[] args) {
        System.out.print("Input your year :");
         Scanner sc=new Scanner(System.in);
