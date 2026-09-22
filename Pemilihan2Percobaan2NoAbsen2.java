@@ -4,8 +4,6 @@ public class Pemilihan2Percobaan2NoAbsen2 {
     public static void main(String[] args) {
         Scanner inputabsen2 = new Scanner(System.in);
         
-        
-        
         System.out.println("-------------------");
         System.out.println("========MENU CAFE JTI========");
         System.out.println("-------------------");
@@ -13,13 +11,25 @@ public class Pemilihan2Percobaan2NoAbsen2 {
         System.out.println("2. Ice Tea ");
         System.out.println("3. Paket Bundling (Ricebowl + Ice Tea)");
         System.out.println("-------------------");
-        System.out.println("Masukkan nomor pesanan :");
+        
+        System.out.print("Masukkan nomor pesanan : ");
         int pilihanMenu = inputabsen2.nextInt();
         inputabsen2.nextLine();
-        System.out.println("Apakah punya Member?(y/n) :");
+        
+        System.out.print("Apakah punya Member?(y/n) : ");
         String member = inputabsen2.nextLine();
+        
+        System.out.print("Masukkan jenis pembayaran (QRIS/Lainnya) : ");
+        String jenisPembayaran = inputabsen2.nextLine();
+        
         System.out.println("-------------------");
         int harga = 0; 
+        int potonganQris = 0;
+
+        if (jenisPembayaran.equalsIgnoreCase("QRIS")) {
+            potonganQris = 1000;
+        }
+
         if (member.equalsIgnoreCase("y")) {
             double diskon = 0.10;
             System.out.println("Selamat Anda mendapatkan diskon 10%");
@@ -38,11 +48,15 @@ public class Pemilihan2Percobaan2NoAbsen2 {
                 return;
             }
             
-            int totalBayar = (int) (harga - (harga * diskon));
-            System.out.println("Total bayar setelah diskon : " + totalBayar);
+            if (potonganQris > 0) {
+                System.out.println("Dapat potongan harga QRIS sebesar Rp 1.000");
+            }
+            
+            int totalBayar = (int) (harga - (harga * diskon)) - potonganQris;
+            System.out.println("Total bayar : " + totalBayar);
 
         } else if (member.equalsIgnoreCase("n")) {
-            System.out.println("Anda tidak mendapatkan diskon");
+            System.out.println("Anda tidak mendapatkan diskon member");
 
             if (pilihanMenu == 1) {
                 harga = 14000;
@@ -58,7 +72,11 @@ public class Pemilihan2Percobaan2NoAbsen2 {
                 return;
             }
             
-            int totalBayar = harga;
+            if (potonganQris > 0) {
+                System.out.println("Dapat potongan harga QRIS sebesar Rp 1.000");
+            }
+            
+            int totalBayar = harga - potonganQris;
             System.out.println("Total bayar : " + totalBayar);
         } else {
             System.out.println("Status member tidak valid (pilih y/n)!");
